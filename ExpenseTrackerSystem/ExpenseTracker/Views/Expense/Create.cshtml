@@ -1,0 +1,58 @@
+﻿@model Expense
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        <h3>Add Expense</h3>
+        <hr />
+        <form asp-controller="Expense" asp-action="Create" method="post">
+            <div class="form-group row">
+                <label asp-for="ItemName" class="col-form-label col-2">Expense Name</label>
+                <div class="col-10">
+                    <input type="text" asp-for="ItemName" class="form-control col-4" />
+                    <span asp-validation-for="ItemName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Amount" class="col-form-label col-2"></label>
+                <div class="col-10">
+                    <input type="number" asp-for="Amount" class="form-control col-4" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="ExpenseDate" class="col-form-label col-2"></label>
+                <input type="date" asp-for="ExpenseDate" class="form-control col-3" />
+                <span asp-validation-for="ExpenseDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="CatagoryId" class="col-form-label col-2">Expense Catagory</label>
+                <div class="col-10">
+                    <select class="form-control col-4" asp-for="CatagoryId" asp-items="@(new SelectList(ViewBag.catagory,"CatagoryId","CatagoryName"))">
+                        <option value="" selected>--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-10 offset-2">
+                    <input type="submit" value="save" class="btn btn-primary btn-sm" />
+                    <a asp-action="Index" asp-controller="Expense" class="btn btn-outline-secondary"> Back to list</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <environment include="Development">
+        <script src="~/lib/validation/jquery.validate.js"></script>
+        <script src="~/lib/validation/jquery.validate.unobtrusive.js"></script>
+       
+    </environment>
+}
+
+
